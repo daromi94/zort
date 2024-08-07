@@ -5,6 +5,8 @@
 #include <vector>
 #include <sysexits.h>
 
+namespace zort {
+
 const std::string PROGRAM = "zort";
 
 const int MINIMUM_ARGUMENT_COUNT = 2;
@@ -98,4 +100,5 @@ std::tuple<bool, std::vector<std::string>> read_lines(const std::vector<std::str
   }
 
   return {true, lines};
+}
 }
