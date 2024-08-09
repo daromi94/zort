@@ -1,8 +1,6 @@
-# Build
-cmake-build-debug
-
-# IntelliJ IDEA
+# CLion
 .idea
+cmake-build-debug
 
 # Visual Studio Code
 .vscode
