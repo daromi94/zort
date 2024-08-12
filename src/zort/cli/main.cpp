@@ -11,47 +11,6 @@ const std::string PROGRAM = "zort";
 
 const int MINIMUM_ARGUMENT_COUNT = 2;
 
-void write_usage();
-
-std::vector<std::string_view> parse_file_paths(int argc, char *argv[]);
-
-bool check_file_paths_exist(const std::vector<std::string_view> &file_paths);
-
-std::tuple<bool, std::vector<std::string>> read_lines(const std::vector<std::string_view> &file_paths);
-
-int main(int argc, char *argv[]) {
-  if (argc < MINIMUM_ARGUMENT_COUNT) {
-    write_usage();
-    return EX_USAGE;
-  }
-
-  const auto file_paths = parse_file_paths(argc, argv);
-  if (file_paths.empty()) {
-    write_usage();
-    return EX_USAGE;
-  }
-
-  if (!check_file_paths_exist(file_paths)) {
-    return EX_NOINPUT;
-  }
-
-  const auto [lines_ok, lines] = read_lines(file_paths);
-  if (!lines_ok) {
-    return EX_IOERR;
-  }
-
-  if (lines.empty()) {
-    std::clog << PROGRAM << ": No lines to process" << std::endl;
-    return EX_OK;
-  }
-
-  for (const auto &line : lines) {
-    std::cout << line << std::endl;
-  }
-
-  return EX_OK;
-}
-
 void write_usage() {
   std::cerr << "Usage: " << PROGRAM << " [file ...]" << std::endl;
 }
@@ -101,4 +60,37 @@ std::tuple<bool, std::vector<std::string>> read_lines(const std::vector<std::str
 
   return {true, lines};
 }
+}
+
+int main(int argc, char *argv[]) {
+  if (argc < zort::MINIMUM_ARGUMENT_COUNT) {
+    zort::write_usage();
+    return EX_USAGE;
+  }
+
+  const auto file_paths = zort::parse_file_paths(argc, argv);
+  if (file_paths.empty()) {
+    zort::write_usage();
+    return EX_USAGE;
+  }
+
+  if (!zort::check_file_paths_exist(file_paths)) {
+    return EX_NOINPUT;
+  }
+
+  const auto [lines_ok, lines] = zort::read_lines(file_paths);
+  if (!lines_ok) {
+    return EX_IOERR;
+  }
+
+  if (lines.empty()) {
+    std::clog << zort::PROGRAM << ": No lines to process" << std::endl;
+    return EX_OK;
+  }
+
+  for (const auto &line : lines) {
+    std::cout << line << std::endl;
+  }
+
+  return EX_OK;
 }
