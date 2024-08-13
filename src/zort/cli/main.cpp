@@ -15,7 +15,7 @@ void write_usage() {
   std::cerr << "Usage: " << PROGRAM << " [file ...]" << std::endl;
 }
 
-std::vector<std::string_view> parse_file_paths(const int argc, const char *argv[]) {
+std::vector<std::string_view> parse_file_paths(const int argc, char *argv[]) {
   std::vector<std::string_view> file_paths;
 
   for (int i = 1; i < argc; ++i) {
