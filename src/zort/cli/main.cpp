@@ -19,7 +19,7 @@ std::vector<std::string_view> parse_file_paths(const int argc, char *argv[]) {
   std::vector<std::string_view> file_paths;
 
   for (int i = 1; i < argc; ++i) {
-    std::string_view argument(argv[i]);
+    const std::string_view argument(argv[i]);
     if (argument.starts_with('-')) {
       break;
     }
