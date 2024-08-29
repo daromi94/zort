@@ -5,9 +5,9 @@
 #include <vector>
 #include <sysexits.h>
 
-namespace zort {
+#define PROGRAM "zort"
 
-const std::string PROGRAM = "zort";
+namespace zort {
 
 const int MINIMUM_ARGUMENT_COUNT = 2;
 
@@ -84,7 +84,7 @@ int main(int argc, char *argv[]) {
   }
 
   if (lines.empty()) {
-    std::clog << zort::PROGRAM << ": No lines to process" << std::endl;
+    std::clog << PROGRAM << ": No lines to process" << std::endl;
     return EX_OK;
   }
 
