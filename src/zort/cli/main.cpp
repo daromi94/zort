@@ -12,7 +12,7 @@ namespace zort {
 const int MINIMUM_ARGUMENT_COUNT = 2;
 
 void write_usage() {
-  std::cerr << "Usage: " << PROGRAM << " [file ...]" << std::endl;
+  std::cerr << "usage: " << PROGRAM << " [file ...]" << std::endl;
 }
 
 std::vector<std::string_view> parse_file_paths(const int argc, char *argv[]) {
